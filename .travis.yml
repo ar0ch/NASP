@@ -107,7 +107,7 @@ env:
 script:
   - go build -x -ldflags="-X main.version=$VERSION -s -w" -gcflags="-trimpath=$GOPATH" -asmflags="-trimpath=$GOPATH"
   - "[ -n \"$TRAVIS_TAG\" ] && DOCKER_TAG=\"-t $DOCKER_REPOSITORY:latest -t $DOCKER_REPOSITORY:$TRAVIS_TAG\""
-  - docker build -t ${DOCKER_REPOSITORY}:dev -t $DOCKER_TAG .
+  - docker build -t ${DOCKER_REPOSITORY}:dev $DOCKER_TAG .
 
 # after_success update the Docker latest image.
 # If this is tagged commit, create a named image as well
